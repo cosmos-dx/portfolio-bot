@@ -13,6 +13,7 @@ import os
 app = Flask(__name__)
 load_dotenv()
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
 GENAI_API_KEY = os.getenv("GENAI_API_KEY")
 if not GENAI_API_KEY:
     raise ValueError("GENAI_API_KEY is not set in the environment variables.")
@@ -57,10 +58,6 @@ try:
     )
 except Exception as e:
     raise RuntimeError(f"Error initializing LangChain pipeline: {e}")
-
-
-app = Flask(__name__)
-CORS(app)
 
 @app.route("/ask", methods=["POST"])
 def ask():
