@@ -10,6 +10,7 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 import os
 
+app = Flask(__name__)
 load_dotenv()
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 GENAI_API_KEY = os.getenv("GENAI_API_KEY")
@@ -85,5 +86,5 @@ def page_not_found(e):
 def internal_server_error(e):
     return jsonify({"error": "An internal server error occurred."}), 500
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
